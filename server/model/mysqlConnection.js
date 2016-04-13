@@ -25,29 +25,5 @@ module.exports = {
             if (err) throw err;
             callback(rows);
         });
-    },
-   
-    // Saca el máximo id de la BBDD lo utilizo para crear un MD5 para guardar los archivos
-    getMaxId: function(callback) {
-        connection.query('SELECT max(id_nota) AS id_nota FROM notas', function (err, rows, fields) {
-            if (err) throw err;
-            callback(rows);
-        });
-    },
-    // Se inserta una nota con ruta de un fichero al que acceder
-    insertMemo: function(fecha, texto, ruta, callback) {
-        //var sql = 'INSERT INTO exhibits (title) VALUES ("fecha")';
-        connection.query('INSERT INTO notas (fecha, texto, fichero) VALUES ("' + fecha + '", "' + texto + '", "' + ruta + '")', function(err, rows, fields) {
-            if (err) throw err;
-            callback(rows);
-        });
-    },
-    // Se inserta una nota sin ruta de un fichero al que acceder
-    insertMemo2: function(fecha, texto, callback) {
-        //var sql = 'INSERT INTO exhibits (title) VALUES ("fecha")';
-        connection.query('INSERT INTO notas (fecha, texto) VALUES ("' + fecha + '", "' + texto + '")', function(err, rows, fields) {
-            if (err) throw err;
-            callback(rows);
-        });
     }
 }
