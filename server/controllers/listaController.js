@@ -7,7 +7,7 @@ module.exports = {
 
     },
     getUnidades: function (req, res, next) {
-        mysql.showUnidades(function (rows) {
+        mysql.showUnidades(req.params.id, function (rows) {
             res.status(200).send(rows);
         })
     }

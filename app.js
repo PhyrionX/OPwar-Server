@@ -36,7 +36,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //Zona pública
 app.get("/api/getEjercitos", lista.getEjercitos);
-app.get("/api/getUnidades", lista.getUnidades);
+app.get("/api/getUnidades/:id", lista.getUnidades);
 /*app.post("/api/registrar", users.registrar);
 app.post("/api/login", users.login);
 app.get("/api/getUsers", users.getUsers);*/

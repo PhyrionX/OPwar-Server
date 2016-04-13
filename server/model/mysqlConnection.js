@@ -20,8 +20,8 @@ module.exports = {
         });
     },
     // Muestra tipos de unidad
-    showUnidades: function (callback) {
-        connection.query('SELECT * FROM unidades u, tipo_unidad tu WHERE  u.id_tipo=tu.tipo_id AND id_ejercito=1 ORDER BY id_tipo', function(err, rows, fields) {
+    showUnidades: function (id_ejercito, callback) {
+        connection.query('SELECT * FROM unidades u, tipo_unidad tu WHERE  u.id_tipo=tu.tipo_id AND id_ejercito=' + id_ejercito + ' ORDER BY id_tipo asc', function(err, rows, fields) {
             if (err) throw err;
             callback(rows);
         });
