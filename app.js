@@ -6,7 +6,6 @@ var express = require('express'),
     http = require('http'),
     path = require('path'),
     config = require('./server/config/config'),
-    mongoose = require('mongoose'),
     middleware = require("./server/controllers/middleware"),
     users = require('./server/controllers/userController');
 var app = express();
@@ -22,10 +21,6 @@ app.use(methodOverride());
 
 app.use(express.static(path.join(__dirname, './public')));
 
-app.set('dbUrl', config.db.test);
- // connect mongoose to the mongo dbUrl
-mongoose.connect(app.get('dbUrl'));
- //...
 
 app.use(function(err, req, res, next) {
     console.log(err.stack);
