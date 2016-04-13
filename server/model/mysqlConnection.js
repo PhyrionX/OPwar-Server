@@ -12,27 +12,21 @@ connection.connect();
 
 // Se exportan las funciones que se requieren utilizar  por otros módulos
 module.exports = {
-    // Muestra todas las notas del campo notas
+    // Muestra los ejercitos
     showArmy: function (callback) {
         connection.query('SELECT * FROM ejercitos', function(err, rows, fields) {
             if (err) throw err;
             callback(rows);
         });
     },
-    // Borra una nota por id
-    borrar: function (id, callback) {
-        connection.query('DELETE FROM notas WHERE id_nota=' + id, function (err) {
-            if (err) throw err;
-            callback ();
-        })
-    },
-    // Muestra una nota por id
-    showById: function(id, callback) {
-        connection.query('SELECT * FROM notas WHERE id_nota=' + id, function (err, rows, fields) {
+    // Muestra tipos de unidad
+    showUnidades: function (callback) {
+        connection.query('SELECT * FROM unidades u, tipo_unidad tu WHERE  u.id_tipo=tu.tipo_id AND id_ejercito=1 ORDER BY id_tipo', function(err, rows, fields) {
             if (err) throw err;
             callback(rows);
         });
     },
+   
     // Saca el máximo id de la BBDD lo utilizo para crear un MD5 para guardar los archivos
     getMaxId: function(callback) {
         connection.query('SELECT max(id_nota) AS id_nota FROM notas', function (err, rows, fields) {

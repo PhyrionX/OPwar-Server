@@ -6,7 +6,9 @@ module.exports = {
         })
 
     },
-    getTipoUnidad: function (req, res, next) {
-        res.status(200).send("op");
+    getUnidades: function (req, res, next) {
+        mysql.showUnidades(function (rows) {
+            res.status(200).send(rows);
+        })
     }
 }
