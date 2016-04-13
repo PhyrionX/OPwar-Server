@@ -6,13 +6,14 @@ var express = require('express'),
     http = require('http'),
     path = require('path'),
     config = require('./server/config/config'),
-    middleware = require("./server/controllers/middleware"),
-    users = require('./server/controllers/userController');
+    lista = require('./server/controllers/listaController');
+    mysql = require('./server/model/mysqlConnection');
 var app = express();
 
 app.set('port', (process.env.PORT || config.port));
 
 app.use(compression());
+
 /*app.use(bodyParser({
     uploadDir: __dirname + '/uploads',
     keepExtensions: true
@@ -34,13 +35,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // **************************************************************
 
 //Zona pública
-app.post("/api/registrar", users.registrar);
+app.get("/api/getEjercitos", lista.getEjercitos);
+app.get("/api/getTipoUnidad", lista.getTipoUnidad);
+/*app.post("/api/registrar", users.registrar);
 app.post("/api/login", users.login);
-app.get("/api/getUsers", users.getUsers);
+app.get("/api/getUsers", users.getUsers);*/
 
 
 //Zona privada
-app.get("/api/private/getUsers", middleware.ensureAuthenticated, users.getUsers);
+//app.get("/api/private/getUsers", middleware.ensureAuthenticated, users.getUsers);
 
 app.get('*', function(req, res){
   res.status(404).send('<h1>Tíííííííííííííííííííío no me toques la URL o te meto!!!!!!</h1>');
