@@ -8,7 +8,7 @@ module.exports = {
     },
     getUnidades: function (req, res, next) {
         mysql.showUnidades(req.params.id, function (rows) {
-            console.log(rows.length);
+            console.log(rows);
             var response = [];
 
             for (var i = 0; i < rows.length; i++) {
@@ -25,7 +25,7 @@ module.exports = {
                 unidad.ataques = rows[i].ataques;
                 unidad.liderazgo = rows[i].liderazgo;
                 unidad.puntos = rows[i].puntos;
-                unidad.tamanyoUnidad = rows[i].tamanyoUnidad;
+                unidad.tamanyoMinimo = rows[i].tamanyo_minimo;
                 unidad.id_ejercito = rows[i].id_ejercito;
                 unidad.tipo_id = rows[i].tipo_id;
                 unidad.tipo = rows[i].tipo;
