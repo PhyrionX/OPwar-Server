@@ -1,8 +1,16 @@
 var mysql = require("../model/mysqlConnection");
 module.exports = {
     getEjercitos: function(req, res, next) {
+        var response = [];
         mysql.showArmy(function (rows) {
-            res.status(200).send(rows);
+            rows.forEach(function (ejercitoRow) {
+                var ejercito = {};
+                ejercito.id_ejercito = ejercitoRow.id_ejercito;
+                ejercito.nombre = ejercitoRow.nombre;
+                ejercito.descripcion = ejercitoRow.descripcion;
+                response.push(ejercito);
+            })
+            res.status(200).json({ejercitos: response});
         })
 
     },
